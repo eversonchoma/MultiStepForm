@@ -11,35 +11,68 @@ import ContactInfo from "./stepcomponents/ContactInfo";
 
 const schema = z
   .object({
-    name: z.string().min(1),
-    age: z.string().min(1),
-    street: z.string().min(1),
-    city: z.string().min(1),
-    streetNumber: z.string().min(1),
-    mobileNumber: z.string().min(1),
-    telNumber: z.string().min(1),
+    name: z
+      .string()
+      .min(1, "This field cannot be blank.")
+      .max(50, "Maximum characters exceeded"),
+    age: z
+      .string()
+      .min(1, "This field cannot be blank..")
+      .max(3, "Maximum characters exceeded"),
+    street: z
+      .string()
+      .min(1, "This field cannot be blank.")
+      .max(100, "Maximum characters exceeded"),
+    city: z
+      .string()
+      .min(1, "This field cannot be blank.")
+      .max(50, "Maximum characters exceeded"),
+    streetNumber: z
+      .string()
+      .min(1, "This field cannot be blank.")
+      .max(10, "Maximum characters exceeded"),
+    mobileNumber: z
+      .string()
+      .min(1, "This field cannot be blank.")
+      .max(15, "Maximum characters exceeded"),
+    phoneNumber: z
+      .string()
+      .min(1, "This field cannot be blank.")
+      .max(15, "Maximum characters exceeded"),
   })
   .required();
 
-type FormValues = z.infer<typeof schema>;
+type FormValues = z.infer<typeof schema>; // leave this for now.
 
 const sourceSteps = [
   {
     label: "Personal Data",
     Component: <PersonalInfo />,
+    fields: ["name", "age"],
     hasError: false,
   },
   {
     label: "Address Data",
-    Component: <AddressInfo/>,
+    Component: <AddressInfo />,
+    fields: ["street", "streetNumber", "city"],
     hasError: false,
   },
   {
     label: "Contact Data",
-    Component: <ContactInfo/>,
+    Component: <ContactInfo />,
+    fields: ["mobileNumber", "phoneNumber"],
     hasError: false,
   },
 ];
+
+const getSteps = (errors: string[]) => {
+  return sourceSteps.map((step) => {
+    return {
+      ...step,
+      hasError: errors.some((error) => step.fields.includes(error)),
+    };
+  });
+};
 
 export function Form() {
   const methods = useForm({
@@ -53,7 +86,7 @@ export function Form() {
       city: "",
       streetNumber: "",
       mobileNumber: "",
-      telNumber: "",
+      phoneNumber: "",
     },
   });
 
@@ -68,10 +101,12 @@ export function Form() {
     );
   }
 
+  const steps = getSteps(Object.keys(methods.formState.errors));
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
-        <Steps items={sourceSteps} />
+        <Steps items={steps} />
       </form>
     </FormProvider>
   );
