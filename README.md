@@ -1,15 +1,10 @@
-<img src="https://drive.google.com/uc?id=1XPWLjUo2-j8iGw07ALcxu7oqJ3nkl2Ho" alt="Rocketseat+"/>
+# Creating a MultiStep form with React Hook Form
 
-# Criando um form MultiStep com React Hook Form
+Everyone agrees that filling out forms is really boring. But, it is almost impossible to leave them aside.
 
-Todo mundo concorda que preencher formulários é muito chato. Mas, é quase impossível deixá-los de lado.
+So how can we improve the experience for users?
 
-Como podemos então melhorar a experiência para os usuários?
+One way is to split the inputs into several steps. So let's learn how to do this using one of the best ways, let's combine the use of `react-hook-form` to manage the state, `zod` for validation, `material ui` for the interface and of course, `typescript` to improve the experience as a dev.
 
-Uma forma é dividir as entradas em várias etapas. Vamos aprender então fazer isso usando uma das melhores formas, vamos combinar o uso do `react-hook-form` para gerenciar o estado, `zod` para validação, `material ui` para a interface e claro, `typescript` para melhorar a experiencia como devs.
 
-## Expert
-
-| [<img src="https://avatars.githubusercontent.com/u/29175815?s=400&u=0fee7695511e1dfabdf5eaacd405853d4e69745c&v=4" width="75px;"/>](https://github.com/joaovbibiano) |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                           [João Bibiano](https://github.com/joaovbibiano)                                                           |
+note: This small project was based in an existing project from RocketSeat
