@@ -51,16 +51,16 @@ export function Steps({ items }: StepProps) {
           onClick={handleBack}
           sx={{ mr: 1 }}
         >
-          Voltar
+          Back
         </Button>
         <Box sx={{ flex: "1 1 auto" }} />
         {isLastStep ? (
-          <Button key="enviar" type="submit">
-            Enviar
+          <Button key="submit" type="submit">
+            Submit
           </Button>
         ) : (
-          <Button key="proximo" type="button" onClick={handleNext}>
-            Próximo
+          <Button key="next" type="button" onClick={handleNext}>
+            Next
           </Button>
         )}
       </Box>
